@@ -55,7 +55,7 @@
                      Margin="5"
                      BorderBrush="DarkSlateGray" BorderThickness="1"
                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                     ItemTemplate="{StaticResource PersonListTemplate}">
+                     ItemTemplate="{StaticResource PersonListTemplate}" SelectionChanged="PersonListBox_SelectionChanged">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel />

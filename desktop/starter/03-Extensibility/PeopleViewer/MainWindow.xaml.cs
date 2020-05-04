@@ -3,6 +3,9 @@ using PersonReader.Interface;
 using PersonReader.Service;
 using PersonReader.SQL;
 using System.Windows;
+using Microsoft.EntityFrameworkCore.Query.Internal;
+using PersonRepository.Interface;
+using PersonRepository.Service;
 
 namespace PeopleViewer
 {
@@ -15,7 +18,13 @@ namespace PeopleViewer
 
         private void ServiceFetchButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ClearListBox();
+            IPersonRepository repository = new ServiceRepository();
+            var people = repository.GetPeople();
+            foreach (var person in people)
+            {
+                PersonListBox.Items.Add(person);
+            }
         }
 
         private void CSVFetchButton_Click(object sender, RoutedEventArgs e)
@@ -41,6 +50,11 @@ namespace PeopleViewer
         private void ShowReaderType(IPersonReader reader)
         {
             MessageBox.Show($"Reader Type:\n{reader.GetType()}");
+        }
+
+        private void ShowRepositoryType(IPersonRepository repository)
+        {
+            MessageBox.Show($"Repository type:\n{repository.GetType()}");
         }
     }
 }
